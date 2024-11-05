@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity Table</title>
+    <!-- Thêm link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Entity Table</h2>
+    <form action="/user/search">
+        <input class="form-control" name="search"/>
+        <button>Search</button>
+    </form>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Avatar</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Row mẫu với các giá trị thay thế -->
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.address}"></td>
+            <td><img th:src="${user.avatar}" alt="Avatar" class="img-thumbnail" style="width: 50px; height: 50px;"></td>
+            <td>
+                <a th:href="@{/user/update/{id}(id=${user.id})}">Update</a>
+            </td>
+        </tr>
+        <!-- Có thể thêm các row khác cho mỗi entity -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Thêm link tới Bootstrap JS và jQuery (nếu cần dùng) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
